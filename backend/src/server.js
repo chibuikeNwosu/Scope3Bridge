@@ -12,7 +12,11 @@ const port = process.env.PORT || 3000; // Acessing the port I defined in the .en
 app.use(cors()); // This allows my application to use the cors module and all its tools to allow cross-origin resource sharing in my application.
 app.use(express.json()); // This allows my application to use the express module and all its tools to parse incoming JSON requests and put the parsed data in req.body. This is important because it allows my application to understand and work with JSON data sent by clients in their requests.
 
-// Routes - These are the endpoints that clients can access to interact with my application. They define how my application responds to different HTTP requests (GET, POST, etc.) at specific paths. In this case, I have defined a simple GET route for the /health endpoint that returns a JSON response indicating that the API is live.
+// Routes - These are the endpoints that clients can access to interact with my application. They define how my application responds to different HTTP requests (GET, POST, etc.) at specific paths.
+const authRoutes = require("./routes/authRoutes"); // This imports the authentication routes that I have set up in my authRoutes.js file, which contains the routes for user registration and authentication in my application.
+app.use("/api/auth", authRoutes); // This tells my application to use the authentication routes for any requests that start with "/api/auth". For example, if a client sends a POST request to "/api/auth/register", it will be handled by the routes defined in authRoutes.js.
+
+// In this case, I have defined a simple GET route for the /health endpoint that returns a JSON response indicating that the API is live.
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "API is Live",
