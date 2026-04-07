@@ -8,4 +8,7 @@ const router = express.Router(); // This creates a new router object that I can 
 // Define the route for user registration
 router.post("/register", authController.register_user); // This defines a POST route for user registration at the endpoint "/register". When a client sends a POST request to this endpoint, the register_user function from the auth controller will be called to handle the registration logic.
 
+// Define the route for user login
+router.post("/login", authController.login_user); // This defines a POST route for user login at the endpoint "/login". When a client sends a POST request to this endpoint, the login_user function from the auth controller will be called to handle the login logic, which includes verifying the user's credentials and generating a JSON Web Token (JWT) if the login is successful.
+
 module.exports = router; // This exports the router object so that it can be used in other parts of the application, such as in the main server file (app.js) where I will import this router and use it to handle authentication-related routes.
